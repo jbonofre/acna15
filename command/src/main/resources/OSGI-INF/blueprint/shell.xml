@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+           default-activation="lazy">
+
+    <reference id="bookService" interface="org.apache.karaf.sample.acna15.persistence.api.BookService"/>
+
+    <command-bundle xmlns="http://karaf.apache.org/xmlns/shell/v1.1.0">
+        <command>
+            <action class="org.apache.karaf.sample.acna15.command.CreateBook">
+                <property name="bookService" ref="bookService"/>
+            </action>
+        </command>
+        <command>
+            <action class="org.apache.karaf.sample.acna15.command.ListBooks">
+                <property name="bookService" ref="bookService"/>
+            </action>
+        </command>
+    </command-bundle>
+
+</blueprint>

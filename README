@@ -1,0 +1,27 @@
+    ApacheCon 15 Karaf Sample
+    -------------------------
+
+This very simple project illustrates the "Karaf for the Enterprise" talk given at ApacheCon NA 15.
+
+1. Installation of the JDBC Datasource
+In a running Karaf instance, install the jdbc feature:
+
+karaf@root()> feature:install jdbc
+
+And create a derby datasource named "book":
+
+karaf@root()> jdbc:create -t derby -i book
+
+2. Register the acna15 features
+
+karaf@root()> feature:repo-add mvn:org.apache.karaf.sample.acna15/acna15-features/1.0-SNAPSHOT/xml/features
+
+3. Install the acna15 features:
+
+karaf@root()> feature:install acna15-persistence
+karaf@root()> feature:install acna15-web
+karaf@root()> feature:install acna15-rest
+
+or all in a row:
+
+karaf@root()> feature:install acna15

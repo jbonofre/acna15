@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<features name="acna15" xmlns="http://karaf.apache.org/xmlns/features/v1.2.0">
+
+    <repository>mvn:org.apache.cxf.karaf/apache-cxf/${cxf.version}/xml/features</repository>
+
+    <feature name="acna15-persistence" version="${project.version}" resolver="(obr)">
+        <feature>jdbc</feature>
+        <feature>transaction</feature>
+        <feature version="2.0.0">jpa</feature>
+        <feature>jndi</feature>
+        <feature version="2.2.2">openjpa</feature>
+        <bundle dependency="true">mvn:org.apache.derby/derbyclient/${derby.version}</bundle>
+        <bundle>mvn:${project.groupId}/persistence/${project.version}</bundle>
+        <bundle>mvn:${project.groupId}/command/${project.version}</bundle>
+    </feature>
+
+    <feature name="acna15-web" version="${project.version}" resolver="(obr)">
+        <feature>war</feature>
+        <bundle>mvn:${project.groupId}/web/${project.version}</bundle>
+    </feature>
+
+    <feature name="acna15-rest" version="${project.version}" resolver="(obr)">
+        <feature>cxf</feature>
+        <bundle>mvn:${project.groupId}/rest/${project.version}</bundle>
+    </feature>
+
+    <feature name="acna15" version="${project.version}" resolver="(obr)">
+        <feature>acna15-persistence</feature>
+        <feature>acna15-web</feature>
+        <feature>acna15-rest</feature>
+    </feature>
+
+</features>
