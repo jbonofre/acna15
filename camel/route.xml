@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0">
+
+    <reference id="bookService" interface="org.apache.karaf.sample.acna15.persistence.api.BookService"/>
+
+    <camelContext xmlns="http://camel.apache.org/schema/blueprint">
+        <route id="exporter">
+            <from uri="timer:fire?period=5000"/>
+            <to uri="bean:bookService?method=getAllBooks"/>
+            <convertBodyTo type="java.lang.String"/>
+            <to uri="log:demo"/>
+            <to uri="file:/tmp/books"/>
+        </route>
+    </camelContext>
+
+</blueprint>
